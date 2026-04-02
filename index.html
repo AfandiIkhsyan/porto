@@ -140,6 +140,29 @@
         margin-left: 0;
       }
 
+      /* Social Media Links Animation */
+      .social-link {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .social-link:hover div {
+        border-color: var(--accent);
+        box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Tooltip animation */
+      .group:hover .absolute {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .absolute {
+        transition: all 0.3s ease;
+        transform: translateX(-50%) translateY(5px);
+      }
+
       /* Optimasi untuk tampilan Mobile */
       @media (max-width: 768px) {
         #hero {
@@ -757,7 +780,7 @@
               class="rounded-lg p-5"
               style="
                 background: var(--surface);
-                border: 1px solid rgba(0, 200, 255, 0.08);git pull origin main
+                border: 1px solid rgba(0, 200, 255, 0.08);
               "
             >
               <p
@@ -1005,20 +1028,18 @@
         </div>
       </section>
 
-      <!-- Contact - Optimasi Teks -->
+      <!-- Contact section with animated social media -->
       <section id="contact" class="px-6 md:px-12 py-24">
         <div class="max-w-2xl mx-auto text-center">
           <div class="glow-line mb-16 mx-auto" style="max-width: 120px"></div>
-          <h2 class="text-3xl md:text-4xl font-semibold mb-4">
-            Mari Berkarya Bersama
-          </h2>
+          <h2 class="text-3xl md:text-4xl font-semibold mb-4">Get In Touch</h2>
           <p class="text-sm mb-10" style="color: var(--text-sec)">
-            Ada proyek dalam pikiran? Baik itu visualisasi 3D, animasi, atau
-            kolaborasi kreatif — saya akan dengan senang hati mendengar ide
-            Anda.
+            Terbuka untuk proyek freelance, kolaborasi, dan kemitraan kreatif.
           </p>
+
+          <!-- Contact Form -->
           <div
-            class="rounded-2xl p-8 md:p-12"
+            class="rounded-2xl p-8 md:p-12 mb-10"
             style="
               background: var(--surface);
               border: 1px solid rgba(0, 200, 255, 0.1);
@@ -1028,17 +1049,18 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <input
                   type="text"
-                  placeholder="Nama Anda"
-                  class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-1"
+                  placeholder="Name"
+                  class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-1 focus:ring-cyan-500 transition"
                   style="
                     background: rgba(255, 255, 255, 0.04);
                     border: 1px solid rgba(0, 200, 255, 0.1);
                     color: var(--text);
                   "
-                /><input
+                />
+                <input
                   type="email"
-                  placeholder="Alamat Email"
-                  class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-1"
+                  placeholder="Email"
+                  class="w-full px-4 py-3 rounded-lg text-sm outline-none focus:ring-1 focus:ring-cyan-500 transition"
                   style="
                     background: rgba(255, 255, 255, 0.04);
                     border: 1px solid rgba(0, 200, 255, 0.1);
@@ -1048,17 +1070,17 @@
               </div>
               <textarea
                 rows="4"
-                placeholder="Ceritakan tentang proyek atau ide Anda..."
-                class="w-full px-4 py-3 rounded-lg text-sm outline-none resize-none focus:ring-1"
+                placeholder="Tell me about your project..."
+                class="w-full px-4 py-3 rounded-lg text-sm outline-none resize-none focus:ring-1 focus:ring-cyan-500 transition"
                 style="
                   background: rgba(255, 255, 255, 0.04);
                   border: 1px solid rgba(0, 200, 255, 0.1);
                   color: var(--text);
                 "
-              ></textarea
-              ><button
+              ></textarea>
+              <button
                 type="submit"
-                class="btn-primary px-8 py-3 rounded-full text-sm tracking-wide flex items-center justify-center gap-2 mx-auto"
+                class="btn-primary px-8 py-3 rounded-full text-sm tracking-wide flex items-center justify-center gap-2 mx-auto transition-all hover:scale-105"
               >
                 Kirim Pesan <i data-lucide="send" style="width: 14px"></i>
               </button>
@@ -1071,21 +1093,181 @@
               <i
                 data-lucide="check-circle"
                 style="width: 20px; display: inline; margin-right: 6px"
-              ></i
-              >Pesan terkirim! Saya akan membalas dalam 48 jam.
+              ></i>
+              Pesan dikirim! Saya akan segera merespons Anda.
             </div>
           </div>
-          <div class="flex items-center justify-center gap-8 mt-10">
-            <a
-              href="mailto:afandiikhsyanalKarim@gmail.com"
-              class="flex items-center gap-2 text-sm hover:text-white"
-              style="color: var(--text-sec)"
-              ><i data-lucide="mail" style="width: 16px"></i
-              ><span>afandiikhsyanalKarim@gmail.com</span></a
+
+          <!-- Social Media Links with tooltip style -->
+          <div class="mt-10">
+            <p
+              class="text-xs tracking-[0.3em] uppercase mb-6"
+              style="
+                color: var(--accent);
+                font-family: &quot;Space Mono&quot;, monospace;
+              "
             >
+              Hubungi Saya
+            </p>
+            <div class="flex items-center justify-center gap-8 flex-wrap">
+              <!-- Email -->
+              <div class="relative group">
+                <a
+                  href="mailto:hello@axelvoss.com"
+                  class="social-link block transition-all duration-300 hover:scale-110"
+                >
+                  <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(0, 200, 255, 0.1),
+                        rgba(0, 200, 255, 0.05)
+                      );
+                      border: 1px solid rgba(0, 200, 255, 0.3);
+                    "
+                  >
+                    <i
+                      data-lucide="mail"
+                      style="width: 24px; height: 24px; color: var(--accent)"
+                    ></i>
+                  </div>
+                </a>
+                <div
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                >
+                  <span
+                    class="text-xs whitespace-nowrap"
+                    style="
+                      color: var(--accent);
+                      font-family: &quot;Space Mono&quot;;
+                    "
+                    >Afandiikhsyanalkarim@gmail.com</span
+                  >
+                </div>
+              </div>
+
+              <!-- LinkedIn -->
+              <div class="relative group">
+                <a
+                  href="https://www.linkedin.com/in/afandiikhsyan"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link block transition-all duration-300 hover:scale-110"
+                >
+                  <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(0, 200, 255, 0.1),
+                        rgba(0, 200, 255, 0.05)
+                      );
+                      border: 1px solid rgba(0, 200, 255, 0.3);
+                    "
+                  >
+                    <i
+                      data-lucide="linkedin"
+                      style="width: 24px; height: 24px; color: var(--accent)"
+                    ></i>
+                  </div>
+                </a>
+                <div
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                >
+                  <span
+                    class="text-xs whitespace-nowrap"
+                    style="
+                      color: var(--accent);
+                      font-family: &quot;Space Mono&quot;;
+                    "
+                    >/in/afandiikhsyan</span
+                  >
+                </div>
+              </div>
+
+              <!-- Instagram -->
+              <div class="relative group">
+                <a
+                  href="https://www.instagram.com/haiisan_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link block transition-all duration-300 hover:scale-110"
+                >
+                  <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(0, 200, 255, 0.1),
+                        rgba(0, 200, 255, 0.05)
+                      );
+                      border: 1px solid rgba(0, 200, 255, 0.3);
+                    "
+                  >
+                    <i
+                      data-lucide="instagram"
+                      style="width: 24px; height: 24px; color: var(--accent)"
+                    ></i>
+                  </div>
+                </a>
+                <div
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                >
+                  <span
+                    class="text-xs whitespace-nowrap"
+                    style="
+                      color: var(--accent);
+                      font-family: &quot;Space Mono&quot;;
+                    "
+                    >@haiisan_</span
+                  >
+                </div>
+              </div>
+
+              <!-- Twitter/X (opsional)
+              <div class="relative group">
+                <a
+                  href="https://twitter.com/axelvoss"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link block transition-all duration-300 hover:scale-110"
+                >
+                  <div
+                    class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
+                    style="
+                      background: linear-gradient(
+                        135deg,
+                        rgba(0, 200, 255, 0.1),
+                        rgba(0, 200, 255, 0.05)
+                      );
+                      border: 1px solid rgba(0, 200, 255, 0.3);
+                    "
+                  >
+                    <i
+                      data-lucide="twitter"
+                      style="width: 24px; height: 24px; color: var(--accent)"
+                    ></i>
+                  </div>
+                </a>
+                <div
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                >
+                  <span
+                    class="text-xs whitespace-nowrap"
+                    style="
+                      color: var(--accent);
+                      font-family: &quot;Space Mono&quot;;
+                    "
+                    >@axelvoss</span
+                  >
+                </div>
+              </div> -->
+            </div>
           </div>
         </div>
       </section>
+
       <footer
         class="px-6 py-8 text-center text-xs"
         style="
