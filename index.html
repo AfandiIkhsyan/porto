@@ -115,14 +115,13 @@
         display: flex;
         align-items: center;
         padding-top: 80px;
-        /* Menggunakan gambar dari Flickr dengan overlay gradient agar teks terbaca */
         background-image:
           linear-gradient(
             to right,
             rgba(10, 10, 15, 0.9) 30%,
             rgba(10, 10, 15, 0.2) 100%
           ),
-          url("https://live.staticflickr.com/65535/55183604076_593431abde_b.jpg"); /* GANTI DENGAN LINK IMAGE DIRECT ANDA */
+          url("https://live.staticflickr.com/65535/55183604076_593431abde_b.jpg");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -140,29 +139,6 @@
         margin-left: 0;
       }
 
-      /* Social Media Links Animation */
-      .social-link {
-        position: relative;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .social-link:hover div {
-        border-color: var(--accent);
-        box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
-        transform: translateY(-2px);
-      }
-
-      /* Tooltip animation */
-      .group:hover .absolute {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
-      .absolute {
-        transition: all 0.3s ease;
-        transform: translateX(-50%) translateY(5px);
-      }
-
       /* Optimasi untuk tampilan Mobile */
       @media (max-width: 768px) {
         #hero {
@@ -170,7 +146,7 @@
             linear-gradient(rgba(10, 10, 15, 0.7), rgba(10, 10, 15, 0.8)),
             url("https://live.staticflickr.com/65535/55183604076_593431abde_b.jpg");
           background-attachment: scroll;
-          background-position: 70% center; /* Menggeser fokus foto ke arah wajah saat layar sempit */
+          background-position: 70% center;
           justify-content: center;
         }
         #hero .relative.z-10 {
@@ -300,7 +276,6 @@
         justify-content: center;
         background: #0a0a0f;
       }
-      /* konten video/gambar tetap proporsional tanpa crop */
       .carousel-slide .media-wrapper {
         display: flex;
         align-items: center;
@@ -315,12 +290,11 @@
         max-height: 100%;
         width: auto;
         height: auto;
-        object-fit: contain; /* tidak terpotong */
+        object-fit: contain;
         display: block;
         margin: 0 auto;
         border-radius: 4px;
       }
-      /* tombol kontrol kustom */
       .video-controls {
         position: absolute;
         bottom: 16px;
@@ -460,7 +434,6 @@
         color: var(--accent);
         z-index: 20;
       }
-      /* fullscreen mode */
       .carousel-container:fullscreen {
         width: 100vw;
         height: 100vh;
@@ -470,6 +443,146 @@
       }
       .carousel-container:fullscreen .carousel-track {
         height: 100vh;
+      }
+
+      /* ============ SOCIAL MEDIA STYLES - EFEK HOVER LEBIH BAIK ============ */
+      .social-link {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      }
+
+      .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+      }
+
+      .social-link:hover > div {
+        animation: pulseBorder 0.6s ease-out;
+        box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+        border-color: rgba(0, 200, 255, 0.8) !important;
+      }
+
+      @keyframes pulseBorder {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 200, 255, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 12px rgba(0, 200, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 200, 255, 0);
+        }
+      }
+
+      /* Efek icon saat hover */
+      .social-link:hover i {
+        animation: iconBounce 0.3s ease;
+        filter: drop-shadow(0 0 6px rgba(0, 200, 255, 0.6));
+      }
+
+      @keyframes iconBounce {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Tooltip style yang lebih baik */
+      .social-link + div {
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(8px);
+        padding: 4px 12px;
+        border-radius: 20px;
+        white-space: nowrap;
+        font-size: 11px;
+        font-family: "Space Mono", monospace;
+        letter-spacing: 0.3px;
+        border: 1px solid rgba(0, 200, 255, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .social-link:hover + div,
+      .social-link:focus + div {
+        opacity: 1 !important;
+        transform: translateX(-50%) translateY(-4px);
+      }
+
+      /* Efek background gradient pada icon container saat hover */
+      .social-link:hover > div {
+        background: linear-gradient(135deg, rgba(0, 200, 255, 0.2), rgba(0, 200, 255, 0.1)) !important;
+      }
+
+      /* Efek ripple saat klik */
+      .social-link:active > div {
+        transform: scale(0.95);
+        transition: transform 0.05s;
+      }
+
+      /* Container social media dengan efek staggered */
+      .social-links-container {
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .social-links-container .social-link {
+        opacity: 0;
+        animation: fadeInUp 0.5s ease forwards;
+      }
+
+      .social-links-container .social-link:nth-child(1) { animation-delay: 0.1s; }
+      .social-links-container .social-link:nth-child(2) { animation-delay: 0.2s; }
+      .social-links-container .social-link:nth-child(3) { animation-delay: 0.3s; }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Tooltip dengan panah kecil */
+      .social-link + div::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid rgba(0, 200, 255, 0.3);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .social-link:hover + div::before {
+        opacity: 1;
+      }
+
+      /* Tooltip text hover effect */
+      .social-link + div span {
+        background: linear-gradient(90deg, var(--accent), #fff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s;
+      }
+
+      .social-link:hover + div span {
+        letter-spacing: 0.5px;
       }
     </style>
   </head>
@@ -545,7 +658,7 @@
         </div>
       </nav>
 
-      <!-- Hero Section - Optimasi Teks -->
+      <!-- Hero Section -->
       <header id="hero" class="relative px-6">
         <div class="relative z-10 w-full mx-auto">
           <div
@@ -581,7 +694,7 @@
           <h1
             class="fade-up fade-up-d2 text-5xl md:text-7xl font-bold mb-6 leading-tight"
           >
-            Afadi Ikhsyan Al Karim
+            Afandi Ikhsyan Al Karim
           </h1>
           <p
             class="fade-up fade-up-d3 text-lg md:text-xl max-w-md"
@@ -601,7 +714,7 @@
         </div>
       </header>
 
-      <!-- SHOWREEL SECTION - Optimasi Teks -->
+      <!-- SHOWREEL SECTION -->
       <section id="showreel" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
         <div class="glow-line mb-16" style="max-width: 120px"></div>
         <h2 class="text-3xl md:text-4xl font-semibold mb-2">
@@ -612,7 +725,7 @@
           aslinya dengan kontrol putar yang nyaman.
         </p>
 
-        <!-- CAROUSEL CONTAINER rasio 16:9 -->
+        <!-- CAROUSEL CONTAINER -->
         <div
           class="carousel-container rounded-2xl overflow-hidden"
           style="
@@ -843,7 +956,7 @@
         </div>
       </section>
 
-      <!-- Gallery Section - Optimasi Teks -->
+      <!-- Gallery Section -->
       <section id="gallery" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
         <div class="glow-line mb-16" style="max-width: 120px"></div>
         <h2 class="text-3xl md:text-4xl font-semibold mb-2">Karya Pilihan</h2>
@@ -916,7 +1029,7 @@
         </div>
       </section>
 
-      <!-- Projects / Comparison Slider - Optimasi Teks -->
+      <!-- Projects / Comparison Slider -->
       <section id="projects" class="px-6 md:px-12 py-24 max-w-7xl mx-auto">
         <div class="glow-line mb-16" style="max-width: 120px"></div>
         <h2 class="text-3xl md:text-4xl font-semibold mb-2">Proses Kreatif</h2>
@@ -1098,7 +1211,7 @@
             </div>
           </div>
 
-          <!-- Social Media Links with tooltip style -->
+          <!-- Social Media Links dengan efek hover yang lebih baik -->
           <div class="mt-10">
             <p
               class="text-xs tracking-[0.3em] uppercase mb-6"
@@ -1109,12 +1222,12 @@
             >
               Hubungi Saya
             </p>
-            <div class="flex items-center justify-center gap-8 flex-wrap">
+            <div class="social-links-container">
               <!-- Email -->
               <div class="relative group">
                 <a
-                  href="mailto:hello@axelvoss.com"
-                  class="social-link block transition-all duration-300 hover:scale-110"
+                  href="mailto:Afandiikhsyanalkarim@gmail.com"
+                  class="social-link block transition-all duration-300"
                 >
                   <div
                     class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
@@ -1134,7 +1247,7 @@
                   </div>
                 </a>
                 <div
-                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 pointer-events-none"
                 >
                   <span
                     class="text-xs whitespace-nowrap"
@@ -1153,7 +1266,7 @@
                   href="https://www.linkedin.com/in/afandiikhsyan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="social-link block transition-all duration-300 hover:scale-110"
+                  class="social-link block transition-all duration-300"
                 >
                   <div
                     class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
@@ -1173,7 +1286,7 @@
                   </div>
                 </a>
                 <div
-                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 pointer-events-none"
                 >
                   <span
                     class="text-xs whitespace-nowrap"
@@ -1192,7 +1305,7 @@
                   href="https://www.instagram.com/haiisan_/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="social-link block transition-all duration-300 hover:scale-110"
+                  class="social-link block transition-all duration-300"
                 >
                   <div
                     class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
@@ -1212,7 +1325,7 @@
                   </div>
                 </a>
                 <div
-                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 pointer-events-none"
                 >
                   <span
                     class="text-xs whitespace-nowrap"
@@ -1224,45 +1337,6 @@
                   >
                 </div>
               </div>
-
-              <!-- Twitter/X (opsional)
-              <div class="relative group">
-                <a
-                  href="https://twitter.com/axelvoss"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="social-link block transition-all duration-300 hover:scale-110"
-                >
-                  <div
-                    class="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
-                    style="
-                      background: linear-gradient(
-                        135deg,
-                        rgba(0, 200, 255, 0.1),
-                        rgba(0, 200, 255, 0.05)
-                      );
-                      border: 1px solid rgba(0, 200, 255, 0.3);
-                    "
-                  >
-                    <i
-                      data-lucide="twitter"
-                      style="width: 24px; height: 24px; color: var(--accent)"
-                    ></i>
-                  </div>
-                </a>
-                <div
-                  class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                >
-                  <span
-                    class="text-xs whitespace-nowrap"
-                    style="
-                      color: var(--accent);
-                      font-family: &quot;Space Mono&quot;;
-                    "
-                    >@axelvoss</span
-                  >
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -1303,16 +1377,16 @@
         const wrapper = slide.querySelector(".media-wrapper");
         if (!wrapper) return;
 
-        // Hapus video lama jika ada, untuk memastikan tidak ada konflik
+        // Hapus video lama jika ada
         const oldVideo = slide.querySelector(".carousel-video");
         if (oldVideo) oldVideo.remove();
 
         // Buat elemen video baru
         const video = document.createElement("video");
         video.className = "carousel-video";
-        video.setAttribute("playsinline", ""); // Penting untuk mobile dan fullscreen
+        video.setAttribute("playsinline", "");
         video.setAttribute("preload", "metadata");
-        video.setAttribute("crossorigin", "anonymous"); // Mencoba mengatasi CORS
+        video.setAttribute("crossorigin", "anonymous");
         video.style.maxWidth = "100%";
         video.style.maxHeight = "100%";
         video.style.width = "auto";
@@ -1331,7 +1405,7 @@
         // Load video
         video.load();
 
-        // --- Buat Kontrol Video (Play, Pause, Fullscreen) ---
+        // --- Buat Kontrol Video ---
         let controls = slide.querySelector(".video-controls");
         if (!controls) {
           controls = document.createElement("div");
@@ -1377,7 +1451,6 @@
         playPauseBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           if (video.paused) {
-            // Hentikan semua video lain
             document.querySelectorAll(".carousel-video").forEach((v) => {
               if (v !== video) v.pause();
             });
@@ -1428,7 +1501,7 @@
         initVideoForSlide(slide, idx);
       });
 
-      // Fungsi pause semua video (dipanggil saat ganti slide)
+      // Fungsi pause semua video
       function pauseAllVideos() {
         document.querySelectorAll(".carousel-video").forEach((video) => {
           if (!video.paused) video.pause();
